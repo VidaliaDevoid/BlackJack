@@ -1,5 +1,5 @@
 class Player
-attr_accessor :money, :points
+attr_accessor :money, :points, :name
 
   def initialize(name)
     @name  = name
@@ -9,8 +9,13 @@ attr_accessor :money, :points
   end
 
   def place_bet(bank)
+    raise ("#{@name} have no money...") if money == 0
     @money -= 10
-    bank.add_to_bank(10)
+    bank.add_money(10)
+  end
+
+  def remove_cards
+    @cards = []
   end
 
   def sort_cards
@@ -27,4 +32,9 @@ attr_accessor :money, :points
 
     sum
   end 
+
+  def take_prize(bank)
+    puts "#{name} wins!"
+    bank.give_prize(self)
+  end
 end
