@@ -10,8 +10,4 @@ class SelfPlayer < Player
       puts "number: #{card.number}, color: #{card.color}"
     }
   end
-
-  def pass
-    puts 'pass'
-  end
 end
