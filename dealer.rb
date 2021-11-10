@@ -1,5 +1,5 @@
 class Dealer < Player
-  attr_accessor :cards
+  attr_accessor :cards, :money
 
   def initialize
     super('Dealer')
