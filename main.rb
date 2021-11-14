@@ -9,6 +9,12 @@ require_relative 'info_helper'
 class Main
   include InfoHelper
 
+  attr_accessor :player_turn
+
+  def initialize
+    @player_turn = 'N'
+  end
+
   def start_game
     print 'Hello! Put your name: '
     name = gets.chomp
@@ -54,7 +60,12 @@ class Main
       point = gets.strip
 
       case point
-        when '1' then dealer_turn(deck, dealer, player, bank)
+        when '1' then 
+          if @player_turn == 'N'
+            dealer_turn(deck, dealer, player, bank)
+          else
+            puts 'Player already turn on this round.'
+          end
         when '2' then deck.add_card(player)
         when '3' then
           end_game(player, dealer, bank) 
@@ -74,6 +85,8 @@ class Main
     else
       deck.add_card(dealer)
     end
+
+    @player_turn = 'Y'
     puts '==================================='
   end
 end
